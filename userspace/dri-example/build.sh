@@ -1,0 +1,1 @@
+gcc drm_test.c -I//include -I//include/libdrm -L//lib -ldrm

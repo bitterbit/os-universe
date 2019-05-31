@@ -1,0 +1,109 @@
+TODO
+- [x]  have config for compiled linux
+- [x]  have config for compiled busybox
+- [x]  compile musl-cross-make
+- [x]  import dynamic-linker to cpio archive
+- [x]  use musl-toolchain to compile file utility
+- [ ] Better visibilty to build process
+    - [x]  Browsable log of current build process
+    - [ ] See the last command run
+    - [ ] Allow shutting down the server from the browser is done (wait for input on log, then shutdown)
+- [ ] Shut down worker server after 1h of no work
+- [ ] Use /etc/inittab instead of /init
+- [ ] Create a psswd file
+- [x]  Dockerfile step tweaks
+    - [x]  Download sources
+    - [x]  Build toolchain
+    - [x]  FROM scratch
+    - [x]  copy toolchain and build linux, busybox, file and make cpio archive
+    - [x]  export bzImage and cpio.gz
+    - [x]  GDB
+
+- [x]  use musl-toolchain to compile gdb
+- [x]  compile node.js
+    - [x] compile node with python
+    - [x]  compile zlib
+    - [x] compile node with python with zlib
+- [x] use node to run hello-world.js
+    - [x] fix node blocking on vm
+- [ ] replace console with js console
+    - [x] pack nshell to single js file
+    - [x] fix missing dependencies
+    - [x] fix PATH env missing
+    - [x] fix child_process.spawn not working
+        - [x] add socket support to kernel
+        - [x] add network interface
+        - [x] configure network interface
+    - [ ] work on easier debbuging
+        - [ ] remote debugging 
+        - [ ] better debuging with source files
+        - [ ] compile node in debug
+        - [ ] use gdb script for v8
+        - [ ] configure node remote debbuging
+    - [x] add rootfs file structre
+- [ ] make nshell system usable
+    - [x] fix nshell bug, autocomplete crashing
+    - [x] nshell catch all exceptions
+    - [x] add cash for js implementation of busybox commands
+    - [x] faster implementation
+        - [x] fix cd waiting for user enterz
+        - [ ] zygot like base process
+        - [ ] execFile instead of exec?
+    - [x] catch ctrl-c
+        - [ ] kernel still panics... make a stubborn init process
+    - [x] ls in /dev folder crashing
+    - [x] execute normal commands with full path
+    - [ ] not all files listed in /dev
+    - [ ] stop crash when symlink is broken
+    - [x] color clear before promt
+    - [ ] fix possible EventEmmiter memory leak
+
+- [ ] Chromium + OSU
+    - [x] compile chromium
+    - [x] debug it and understand where the graphics are
+    - [ ] compile chromium for OSU
+        -[ ] make OSU based on gentoo stage3
+        -[ ] fix users and init
+        -[ ] add support for /dev/shm and tmpfs 
+    - [ ] start with ozone
+    - [ ] display hello world!
+
+- [ ] GUI 
+    - [ ] Add support for fbdev
+        - [x] add kernel drivers
+        - [x] boot linux into graphic mode (tux is now showing on top of window)
+        - [x] find /dev/fb0
+        - [x] print random to /dev/fb0
+        - [x] graphic icon boot
+        - [ ] custom graphic icon boot
+        - [x] color shell? 
+
+    - [x] compile libdrm and mesa for osu
+        - [x] configure kernel support for dri
+        - [x] compile libdrm
+        - [x] compile mesa
+    - [x] run example-fbdev
+    - [x] run example-dri
+    - [ ] run example-mesa (triangle)
+        - [ ] fix mesa build to search for swarst in /lib
+    - [ ] add examples to build scripts
+
+    - [ ] Build Chromium on Worker
+        - [ ] build bash, git, fake sudo, fake lsb-release
+        - [ ] get depot_tools 
+        - [ ] ./build/install-build-deps.sh --no-nacl --no-arm --no-backwards-compatible
+              puts gn in an inner folder, this is important
+            - [ ] find out when it takes gn
+            - [ ] skip parts not needed immidiatly, then build and figure out whats missing
+        - [ ] gn gen out/Osone
+        - [ ] ninja build (we have ninja, no need to use depot_tools for it)
+
+    - [ ] make a proper chroot instead of current setup (using sed)
+    
+    - [ ] display manager to show [content + status-bar]
+
+    - [ ] Hello world with "native widgets" (lvgl looks promising)
+        - [ ] compile lvgl https://blog.littlevgl.com/2018-01-03/linux_fb
+        - [ ] hello world app
+
+

@@ -1,0 +1,68 @@
+#!/dumb-init /bin/sh
+mount -t proc none /proc
+mount -t sysfs none /sys
+
+# mknod -m 622 /dev/console c 5 1 # Already populated (by qemu?)
+mknod -m 666 /dev/null c 1 3
+mknod -m 666 /dev/zero c 1 5
+mknod -m 666 /dev/ptmx c 5 2
+mknod -m 666 /dev/tty c 5 0
+mknod -m 444 /dev/random c 1 8
+mknod -m 444 /dev/urandom c 1 9
+mknod /dev/fb0 c 29 0
+mkdir -p /dev/dri
+mknod /dev/dri/card0 c 180 0
+
+mknod /dev/sda b 8 0
+mount /dev/sda /mnt/sda
+
+ln -s /proc/self/fd /dev/fd
+ln -s /proc/self/fd/0 /dev/stdin
+ln -s /proc/self/fd/1 /dev/stdout
+ln -s /proc/self/fd/2 /dev/stderr
+
+export PATH=$PATH
+
+# TODO figure out if this is needed http://www.tldp.org/LDP/lfs/LFS-BOOK-6.1.1-HTML/chapter06/devices.html
+# mkdir -v /dev/pts
+# mkdir -v /dev/shm
+# mount -vt devpts -o gid=4,mode=620 none /dev/pts
+
+mkdir /dev/shm
+mount -vt tmpfs none /dev/shm
+
+ifconfig lo up
+ifconfig eth0 up
+udhcpc -s /etc/udhcpc/default.script
+
+cat << EOF
+         _______                   _____                    _____          
+        /::\    \                 /\    \                  /\    \         
+       /::::\    \               /::\    \                /::\____\        
+      /::::::\    \             /::::\    \              /:::/    /        
+     /::::::::\    \           /::::::\    \            /:::/    /         
+    /:::/~~\:::\    \         /:::/\:::\    \          /:::/    /          
+   /:::/    \:::\    \       /:::/__\:::\    \        /:::/    /           
+  /:::/    / \:::\    \      \:::\   \:::\    \      /:::/    /            
+ /:::/____/   \:::\____\   ___\:::\   \:::\    \    /:::/    /      _____  
+|:::|    |     |:::|    | /\   \:::\   \:::\    \  /:::/____/      /\    \ 
+|:::|____|     |:::|    |/::\   \:::\   \:::\____\|:::|    /      /::\____\.
+ \:::\    \   /:::/    / \:::\   \:::\   \::/    /|:::|____\     /:::/    /.
+  \:::\    \ /:::/    /   \:::\   \:::\   \/____/  \:::\    \   /:::/    / 
+   \:::\    /:::/    /     \:::\   \:::\    \       \:::\    \ /:::/    /  
+    \:::\__/:::/    /       \:::\   \:::\____\       \:::\    /:::/    /   
+     \::::::::/    /         \:::\  /:::/    /        \:::\__/:::/    /    
+      \::::::/    /           \:::\/:::/    /          \::::::::/    /     
+       \::::/    /             \::::::/    /            \::::::/    /      
+        \::/____/               \::::/    /              \::::/    /       
+         ~~                      \::/    /                \::/____/        
+                                  \/____/                  ~~                                                                                      
+
+EOF
+#exec /bin/sh
+
+cd /home/user
+chown 1001:1001 /home/user 
+exec /system/bin/su 1001
+
+#exec /bin/node /system/nshell.js
