@@ -2,4 +2,4 @@ out/
 *.swp
 notes.txt
 .vscode
-userspace/nshell
+.gclient_entries
