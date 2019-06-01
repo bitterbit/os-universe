@@ -69,15 +69,18 @@ TODO
     - [ ] display hello world!
 
 - [ ] Move to new directory structure
-    - [ ] Migrate kernel
+    - [x] Migrate kernel
         - [x] Migrate files
         - [x] Incoparte makefile
         - [x] Fix kernel build, boot hanging
     - [x] Migrate rootfs
-    - [ ] Migrate chrome image building (stage3)
-        - [ ] Migrate files
-        - [ ] Add .img script
-        - [ ] Incoprate Makefile
+    - [ ] Migrate chrome chroot build
+        - [x] Move files
+        - [ ] Make automatic with makefile
+    - [x] Migrate chrome image building
+        - [x] Migrate files
+        - [x] Add .img script
+        - [x] Incoprate Makefile
     - [x] Migrate qemu scripts
     - [x] Migrate userspace programes with gclient
     - [ ] Start using Makefile

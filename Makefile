@@ -5,8 +5,10 @@
 K_IMAGE := "osu-kernel"
 GZIP_LEVEL := 1 # 1 is lowest and 9 heighest
 
+.PHONY : kernel rootfs chromeimg
 kernel : out/bzImage
 rootfs : out/rootfs-chrome.cpio.gz
+chromeimg : out/chrome.img
 
 out/bzImage :
 	k_name=osu-kernel-$$(date +'%Y%m%d-%H%M%S') && \
@@ -19,3 +21,5 @@ out/bzImage :
 out/rootfs-chrome.cpio.gz :
 	cd rootfs && \
 	    find . -print0 | cpio --null -ov --format=newc | gzip -$(GZIP_LEVEL) > ../out/rootfs-chrome.cpio.gz
+out/chrome.img :
+	tools/folder2img/run-folder2img.sh $$PWD/third_party/chromium/src/out/Osone $$PWD/out/chrome.img 
