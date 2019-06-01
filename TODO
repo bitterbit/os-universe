@@ -57,7 +57,7 @@ TODO
     - [ ] stop crash when symlink is broken
     - [x] color clear before promt
     - [ ] fix possible EventEmmiter memory leak
-
+- [ ] Nshell + Upterm
 - [ ] Chromium + OSU
     - [x] compile chromium
     - [x] debug it and understand where the graphics are
@@ -67,6 +67,21 @@ TODO
         -[ ] add support for /dev/shm and tmpfs 
     - [ ] start with ozone
     - [ ] display hello world!
+
+- [ ] Move to new directory structure
+    - [ ] Migrate kernel
+        - [x] Migrate files
+        - [x] Incoparte makefile
+        - [x] Fix kernel build, boot hanging
+    - [x] Migrate rootfs
+    - [ ] Migrate chrome image building (stage3)
+        - [ ] Migrate files
+        - [ ] Add .img script
+        - [ ] Incoprate Makefile
+    - [x] Migrate qemu scripts
+    - [x] Migrate userspace programes with gclient
+    - [ ] Start using Makefile
+    - [ ] Move os-universe to old-os-universe
 
 - [ ] GUI 
     - [ ] Add support for fbdev
