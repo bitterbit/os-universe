@@ -11,7 +11,7 @@ rootfs : out/rootfs-chrome.cpio.gz
 out/bzImage :
 	k_name=osu-kernel-$$(date +'%Y%m%d-%H%M%S') && \
 	    echo "name $$k_name" && \
-	    cd linux-kernel && docker build -t $(K_IMAGE) . && cd - && \
+	    cd kernel && docker build -t $(K_IMAGE) . && cd - && \
 	    docker create --name "$$k_name" $(K_IMAGE) && \
 	    docker cp "$$k_name:/out/bzImage" out/ && \
 	    docker rm "$$k_name"
