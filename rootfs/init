@@ -1,6 +1,8 @@
 #!/dumb-init /bin/sh
+
 mount -t proc none /proc
 mount -t sysfs none /sys
+mount -t tmpfs none /dev/shm
 
 # mknod -m 622 /dev/console c 5 1 # Already populated (by qemu?)
 mknod -m 666 /dev/null c 1 3
@@ -9,11 +11,9 @@ mknod -m 666 /dev/ptmx c 5 2
 mknod -m 666 /dev/tty c 5 0
 mknod -m 444 /dev/random c 1 8
 mknod -m 444 /dev/urandom c 1 9
-mknod /dev/fb0 c 29 0
-mkdir -p /dev/dri
-mknod /dev/dri/card0 c 180 0
-
-mknod /dev/sda b 8 0
+mknod /dev/fb0 c 29 0                # framebuffer
+mknod /dev/dri/card0 c 180 0         # dri graphics
+mknod /dev/sda b 8 0                 # external drive
 mount /dev/sda /mnt/sda
 
 ln -s /proc/self/fd /dev/fd
@@ -28,11 +28,9 @@ export PATH=$PATH
 # mkdir -v /dev/shm
 # mount -vt devpts -o gid=4,mode=620 none /dev/pts
 
-mkdir /dev/shm
-mount -vt tmpfs none /dev/shm
-
 ifconfig lo up
 ifconfig eth0 up
+# TODO we lost udhcpc, may need to build it from source again
 udhcpc -s /etc/udhcpc/default.script
 
 cat << EOF
@@ -63,6 +61,7 @@ EOF
 
 cd /home/user
 chown 1001:1001 /home/user 
+export HOME="/home/user"
 exec /system/bin/su 1001
 
 #exec /bin/node /system/nshell.js
