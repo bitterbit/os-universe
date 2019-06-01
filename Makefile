@@ -21,5 +21,5 @@ out/bzImage :
 out/rootfs-chrome.cpio.gz :
 	cd rootfs && \
 	    find . -print0 | cpio --null -ov --format=newc | gzip -$(GZIP_LEVEL) > ../out/rootfs-chrome.cpio.gz
-out/chrome.img :
+chromeimg :
 	tools/folder2img/run-folder2img.sh $$PWD/third_party/chromium/src/out/Osone $$PWD/out/chrome.img 
