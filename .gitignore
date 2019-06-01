@@ -3,3 +3,4 @@ out/
 notes.txt
 .vscode
 .gclient_entries
+.DS_Store
