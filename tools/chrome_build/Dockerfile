@@ -1,6 +1,9 @@
 FROM alpine
 ENV HOME /root
 WORKDIR $HOME
-ADD create_chroot.sh create_chroot.sh
-RUN echo "./create_chroot.sh" > .profile && chmod +x .profile
+ADD scripts/chroot.sh chroot.sh
+ADD scripts/chrooted_build.sh chrooted_build.sh 
+
+RUN echo "./chrooted_build.sh" > .profile && chmod +x .profile
+
 ENTRYPOINT ["/bin/ash"]

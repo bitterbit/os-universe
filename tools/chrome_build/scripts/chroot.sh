@@ -7,9 +7,6 @@ mount -o bind /dev dev
 #mknod -m 444 /dev/random c 1 8 
 #mknod -m 444 /dev/urandom c 1 9 
 
-# old plain shell
-# chroot . /bin/bash
-
-chroot . /scripts/ninja.sh 
+chroot . $1
 export PS1="\(chroot\) \w \$" 
 exit

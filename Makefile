@@ -28,4 +28,4 @@ chromeimg :
 	tools/folder2img/run-folder2img.sh $$PWD/third_party/chromium/src/out/Osone $$PWD/out/chrome.img 
 
 chromebuild: 
-	tools/chrome_build/run_chroot_docker.sh
+	tools/chrome_build/run_chroot.sh
