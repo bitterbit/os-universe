@@ -68,23 +68,30 @@ TODO
     - [ ] start with ozone
     - [ ] display hello world!
 
-- [ ] Move to new directory structure
+- [x] Move to new directory structure
     - [x] Migrate kernel
         - [x] Migrate files
         - [x] Incoparte makefile
         - [x] Fix kernel build, boot hanging
     - [x] Migrate rootfs
-    - [ ] Migrate chrome chroot build
+    - [x] Migrate chrome chroot build
         - [x] Move files
-        - [ ] Make automatic with makefile
+        - [x] Make automatic with makefile
     - [x] Migrate chrome image building
         - [x] Migrate files
         - [x] Add .img script
         - [x] Incoprate Makefile
     - [x] Migrate qemu scripts
     - [x] Migrate userspace programes with gclient
-    - [ ] Start using Makefile
-    - [ ] Move os-universe to old-os-universe
+    - [x] Start using Makefile
+    - [x] Move os-universe to old-os-universe
+
+- [ ] Chrome Startup on OSU
+    - [v] add gdbserver
+    - [v] fix missing udhchp (busybox)
+    - [v] portfoward gdbserver
+    - [ ] figure out how to debug with source
+    - [ ] setup breakpoints before crashes and examine variables
 
 - [ ] GUI 
     - [ ] Add support for fbdev
