@@ -3,7 +3,7 @@ qemu-system-x86_64 \
   -initrd out/rootfs-chrome.cpio.gz \
   -m size=2048\
   -vga std \
-  -netdev user,id=un0,net=10.7.0.0/24,host=10.7.0.177  \
+  -netdev user,id=un0,net=10.7.0.0/24,host=10.7.0.177,hostfwd=tcp::10022-:5555  \
   -device e1000e,netdev=un0 \
   -device virtio-scsi-pci,id=scsi \
   -device scsi-hd,drive=hd \

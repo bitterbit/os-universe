@@ -22,6 +22,7 @@ ln -s /proc/self/fd/1 /dev/stdout
 ln -s /proc/self/fd/2 /dev/stderr
 
 export PATH=$PATH
+export PATH=$PATH:/system/bin
 
 # TODO figure out if this is needed http://www.tldp.org/LDP/lfs/LFS-BOOK-6.1.1-HTML/chapter06/devices.html
 # mkdir -v /dev/pts
@@ -57,11 +58,11 @@ cat << EOF
                                   \/____/                  ~~                                                                                      
 
 EOF
-#exec /bin/sh
 
 cd /home/user
 chown 1001:1001 /home/user 
 export HOME="/home/user"
-exec /system/bin/su 1001
+#exec /system/bin/su 1001
+exec /bin/sh
 
 #exec /bin/node /system/nshell.js
