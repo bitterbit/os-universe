@@ -11,8 +11,8 @@ mknod -m 666 /dev/ptmx c 5 2
 mknod -m 666 /dev/tty c 5 0
 mknod -m 444 /dev/random c 1 8
 mknod -m 444 /dev/urandom c 1 9
-mknod /dev/fb0 c 29 0                # framebuffer
-mknod /dev/dri/card0 c 180 0         # dri graphics
+mknod -m 666 /dev/fb0 c 29 0                # framebuffer
+mknod -m 666 /dev/dri/card0 c 226 0         # dri graphics
 mknod /dev/sda b 8 0                 # external drive
 mount /dev/sda /mnt/sda
 
