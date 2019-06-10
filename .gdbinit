@@ -26,7 +26,7 @@ def setup_source_path(path_chromium):
     gdb.execute('set debug-file-directory %s' % os.path.join(sysroot, "mnt/sda"))
 
     # Let gdb know wher the source code is. Source code is relative path so we need to specify out/Osone
-    gdb.execute('directory %s' % os.path.join(path_chromium, "out/Osone")) 
+    gdb.execute('directory %s' % os.path.join(path_chromium, "src/out/Osone")) 
 
 if os.getcwd().endswith("os-universe"):
     print "Setting up chrome debugging env..."
