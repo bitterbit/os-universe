@@ -62,6 +62,8 @@ EOF
 cd /home/user
 chown 1001:1001 /home/user 
 export HOME="/home/user"
+export EGL_PLATFORM=surfaceless
+export EGL_LOG_LEVEL=debug
 #exec /system/bin/su 1001
 exec /bin/sh
 
