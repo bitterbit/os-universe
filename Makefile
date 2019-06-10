@@ -7,7 +7,6 @@ GZIP_LEVEL := 1 # 1 is lowest and 9 heighest
 
 .PHONY : kernel rootfs chromeimg chromebuild chrome
 kernel : out/bzImage
-rootfs : out/rootfs-chrome.cpio.gz
 
 
 out/bzImage :
@@ -18,7 +17,7 @@ out/bzImage :
 	    docker cp "$$k_name:/out/bzImage" out/ && \
 	    docker rm "$$k_name"
 
-out/rootfs-chrome.cpio.gz :
+rootfs :
 	cd rootfs && \
 	    find . -print0 | cpio --null -ov --format=newc | gzip -$(GZIP_LEVEL) > ../out/rootfs-chrome.cpio.gz
 
