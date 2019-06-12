@@ -41,12 +41,17 @@ void *emmap(int addr, size_t len, int prot, int flag, int fd, off_t offset)
 	return fp;
 }
 
-int drm_open(const char *path)
-{
-	int fd, flags;
-	uint64_t has_dumb;
+int drm_open(const char *path){
+	int fd = eopen(path, O_RDWR);
+        drm_open_fd(fd);
+        return fd;
+}
 
-	fd = eopen(path, O_RDWR);
+void drm_open_fd(int fd)
+{
+	int flags;
+	uint64_t has_dumb;
+        printf("drm_util: drm_open_fd\n");
 
 	/* set FD_CLOEXEC flag */
 	if ((flags = fcntl(fd, F_GETFD)) < 0
@@ -56,8 +61,6 @@ int drm_open(const char *path)
 	/* check capability */
 	if (drmGetCap(fd, DRM_CAP_DUMB_BUFFER, &has_dumb) < 0 || has_dumb == 0)
 		fatal("drmGetCap DRM_CAP_DUMB_BUFFER failed or doesn't have dumb buffer");
-
-	return fd;
 }
 
 struct drm_dev_t *drm_find_dev(int fd)

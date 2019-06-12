@@ -22,6 +22,7 @@ struct drm_dev_t {
 };
 
 int drm_open(const char *path);
+void drm_open_fd(int fd);
 
 struct drm_dev_t *drm_find_dev(int fd);
 void drm_setup_fb(int fd, struct drm_dev_t *dev);

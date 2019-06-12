@@ -62,7 +62,7 @@ static struct my_display get_display(void)
 {
     struct my_display dpy;
 
-    int card_fd = open(VIDEO_CARD_FILE, O_RDWR | FD_CLOEXEC);
+    int card_fd = open(VIDEO_CARD_FILE, O_RDWR); //  | FD_CLOEXEC);
     if (card_fd < 0) {
         fprintf(stderr, "Failed to open card: " VIDEO_CARD_FILE "\n");
         abort();
@@ -224,6 +224,8 @@ struct drm_dev_t* get_drm(int fd) {
     uint8_t color;
     int i, j;
 
+    drm_open_fd(fd);
+
     dev_head = drm_find_dev(fd);
     if (dev_head == NULL) {
         printf("available drm_dev not found\n");
@@ -248,7 +250,9 @@ int main()
 
 
     struct my_display dpy = get_display();
+
     struct drm_dev_t* drm = get_drm(dpy.fd);
+
     struct my_config config = get_config(dpy);
     struct my_window window = get_window(config);
     printf("If we are here, all is OK. Lets draw...\n");
