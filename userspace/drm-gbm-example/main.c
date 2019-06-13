@@ -244,10 +244,21 @@ struct drm_dev_t* get_drm(int fd) {
     return dev;
 }
 
+static void swap_buffers()
+{
+
+}
+
+static void draw(float progress) 
+{
+    glClearColor(1.0f-progress, progress, 0.0, 1.0);
+    glClear (GL_COLOR_BUFFER_BIT);
+    swap_buffers();
+}
+
 int main()
 {
     check_extensions();
-
 
     struct my_display dpy = get_display();
 
@@ -266,7 +277,13 @@ int main()
 
     printf("Cleanup\n");
 
-    gbm_surface_destroy(window.gbmsurface);
-    window.gbmsurface = NULL;
+    drm_destroy(dpy.fd, drm);
+
+    eglDestroySurface(dpy.egldisplay, window.eglsurface); // EGL
+    gbm_surface_destroy(window.gbmsurface);               // GBM
+    eglDestroyContext(dpy.egldisplay, ctx);               // EGL
+    eglTerminate(dpy.egldisplay);                         // EGL
+    gbm_device_destroy(dpy.gbmdev);                       // GBM
+
     return 0;
 }
