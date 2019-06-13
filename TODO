@@ -86,12 +86,13 @@ TODO
     - [x] Start using Makefile
     - [x] Move os-universe to old-os-universe
 
-- [ ] Chrome Startup on OSU
-    - [v] add gdbserver
-    - [v] fix missing udhchp (busybox)
-    - [v] portfoward gdbserver
-    - [ ] figure out how to debug with source
-    - [ ] setup breakpoints before crashes and examine variables
+- [x] Setup debugging env on OSU
+    - [x] add gdbserver
+    - [x] fix missing udhchp (busybox)
+    - [x] portfoward gdbserver
+    - [x] figure out how to debug with source
+    - [x] setup breakpoints before crashes and examine variables
+    - [x] add strace
 
 - [ ] GUI 
     - [ ] Add support for fbdev
@@ -109,24 +110,19 @@ TODO
         - [x] compile mesa
     - [x] run example-fbdev
     - [x] run example-dri
-    - [ ] run example-mesa (triangle)
-        - [ ] fix mesa build to search for swarst in /lib
-    - [ ] add examples to build scripts
+    - [ ] run example-mesa (EGL)
+        - [x] fix mesa build to search for swarst in /lib
+        - [x] combine gbm and drm to get a valid EGL context
+        - [ ] write egl demo code
+    - [x] add examples to build scripts
 
-    - [ ] Build Chromium on Worker
-        - [ ] build bash, git, fake sudo, fake lsb-release
-        - [ ] get depot_tools 
-        - [ ] ./build/install-build-deps.sh --no-nacl --no-arm --no-backwards-compatible
-              puts gn in an inner folder, this is important
-            - [ ] find out when it takes gn
-            - [ ] skip parts not needed immidiatly, then build and figure out whats missing
-        - [ ] gn gen out/Osone
-        - [ ] ninja build (we have ninja, no need to use depot_tools for it)
 
-    - [ ] make a proper chroot instead of current setup (using sed)
-    
+    - [ ] Chromium
+        - [ ] run sucessful build
+        - [ ] understand the differences between chromes egl initialzation and the working example
+        - [ ] implement an ozone layer for gbm+drm+egl
+
     - [ ] display manager to show [content + status-bar]
-
     - [ ] Hello world with "native widgets" (lvgl looks promising)
         - [ ] compile lvgl https://blog.littlevgl.com/2018-01-03/linux_fb
         - [ ] hello world app
