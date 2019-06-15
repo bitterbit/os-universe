@@ -268,7 +268,13 @@ int main()
     struct my_window window = get_window(config);
     printf("If we are here, all is OK. Lets draw...\n");
 
-    EGLContext ctx = eglCreateContext (dpy.egldisplay, config.eglconfig, EGL_NO_CONTEXT, NULL);
+    EGLint attrib_list[] = {
+        EGL_CONTEXT_MAJOR_VERSION, 3,
+        EGL_CONTEXT_MINOR_VERSION, 0,
+        EGL_NONE
+    };
+
+    EGLContext ctx = eglCreateContext (dpy.egldisplay, config.eglconfig, EGL_NO_CONTEXT, attrib_list);
     eglMakeCurrent(dpy.egldisplay, window.eglsurface, window.eglsurface, ctx);
     glClearColor(1.0, 1.0, 0.0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
