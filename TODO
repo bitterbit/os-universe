@@ -117,10 +117,19 @@ TODO
     - [x] add examples to build scripts
 
 
-    - [ ] Chromium
-        - [ ] run sucessful build
-        - [ ] understand the differences between chromes egl initialzation and the working example
-        - [ ] implement an ozone layer for gbm+drm+egl
+    - [x] Chromium
+        - [x] run sucessful build
+        - [x] understand the differences between chromes egl initialzation and the working example
+        - [x] convert chrome to use system gbm instead of minigbm
+        - [x] fake mesa swrast vendor name to bypass chrome blacklists
+        - [ ] bochs-drm driver does not support PRIME ioctls. move to vmwgfx
+
+    - [ ] Move to vmwgfx
+        - [ ] install vmwgfx in kernel
+        - [ ] install libdrm + mes 
+        - [ ] build image to boot in vmware
+        - [ ] run tests drm/gbm/egl tests
+        - [ ] build chrome with minigbm for vmwgfx 
 
     - [ ] display manager to show [content + status-bar]
     - [ ] Hello world with "native widgets" (lvgl looks promising)
