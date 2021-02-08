@@ -1,3 +1,5 @@
+Abandond project looking to build a slim OS build soley around chrome.
+
 Includes basics for osu operating system  
 
 ## Features
@@ -8,3 +10,4 @@ on gentoo stage3
 needed.  
 4. [ ] build chrome and rap it with userspace into .img  
 5. [x] run all that magic in qemu  
+
