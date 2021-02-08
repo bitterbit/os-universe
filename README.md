@@ -1,4 +1,5 @@
-Abandond project looking to build a slim OS build soley around chrome.
+(Abandond) project looking to build a slim OS build soley around chrome.
+---
 
 Includes basics for osu operating system  
 
